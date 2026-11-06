@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>E-LKPD Interaktif: Model Matematika Program Linear</title>
+<style>
+:root{--bg:#f4f7fa;--card:#fff;--tx:#1b2631;--mut:#5a6b7b;--pri:#1f4e79;--acc:#2e75b6;--ok:#2e7d32;--bad:#c62828;--bd:#cfdae5;--hl:#e3eef8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f161d;--card:#18222c;--tx:#e6edf3;--mut:#9aabba;--pri:#8ec1ee;--acc:#5aa2e0;--ok:#66bb6a;--bad:#ef6f6c;--bd:#2c3b49;--hl:#1c2f42}}
+:root[data-theme="dark"]{--bg:#0f161d;--card:#18222c;--tx:#e6edf3;--mut:#9aabba;--pri:#8ec1ee;--acc:#5aa2e0;--ok:#66bb6a;--bad:#ef6f6c;--bd:#2c3b49;--hl:#1c2f42}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,"Segoe UI",Roboto,sans-serif}
+main{max-width:780px;margin:0 auto;padding:16px 14px 60px}
+.hero{background:linear-gradient(135deg,#1f4e79,#2e75b6 60%,#43a6c6);color:#fff;border-radius:16px;padding:20px 18px;margin-bottom:12px}
+.hero h1{color:#fff;margin:.1em 0;font-size:1.55rem}.hero p{margin:.2em 0;opacity:.92}.chip{display:inline-block;background:rgba(255,255,255,.22);border-radius:20px;padding:2px 10px;font-size:.8rem;margin:4px 4px 0 0}
+h2,h3{font-family:Georgia,serif;color:var(--pri);line-height:1.25}h2{font-size:1.3rem;margin:1.2em 0 .4em}h3{font-size:1.05rem;margin:1.2em 0 .3em}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:10px 0}.tabs button{flex:1 0 auto;padding:8px 12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:20px;font:inherit;font-size:.88rem;font-weight:600;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--pri);color:var(--card);border-color:var(--pri)}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+section{display:none}section.on{display:block}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;margin:10px 0}
+table{border-collapse:collapse;width:100%;margin:8px 0}th,td{border:1px solid var(--bd);padding:6px 8px;text-align:left}th{background:var(--hl)}
+select,input[type=text],textarea{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:5px 8px}
+.ok{border-color:var(--ok)!important;background:color-mix(in srgb,var(--ok) 15%,var(--card))!important}.bad{border-color:var(--bad)!important;background:color-mix(in srgb,var(--bad) 15%,var(--card))!important}
+textarea{width:100%;min-height:76px}input.blank{width:62px;text-align:center;padding:3px 5px;margin:0 3px}
+.btn{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:9px 16px;font:inherit;font-weight:600;cursor:pointer;margin:6px 6px 0 0}.btn.alt{background:transparent;color:var(--pri);border:1px solid var(--bd)}
+.fb{margin:8px 0 0;font-weight:600;min-height:1.2em}.fb.ok{color:var(--ok);background:none!important;border:0!important}.fb.bad{color:var(--bad);background:none!important;border:0!important}
+svg.pl{width:100%;max-width:460px;height:auto;display:block;margin:6px auto;background:var(--card);border:1px solid var(--bd);border-radius:10px;touch-action:manipulation}svg text{fill:var(--tx);font-family:inherit}
+.hint{color:var(--mut);font-size:.9rem}.key{border-left:5px solid #c55a11;background:var(--hl);padding:12px 14px;border-radius:6px;margin:10px 0}
+.open{border-left:4px solid var(--acc);padding-left:12px}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0}
+input[type=range]{flex:1;min-width:150px;accent-color:var(--acc)}progress{width:100%;height:10px;accent-color:var(--ok)}
+label.o{display:block;padding:4px 0;cursor:pointer}.g{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}.g input{width:100%}
+.rk{min-height:150px;font-size:.85rem}.leg{font-size:.85rem;font-weight:600}[hidden]{display:none!important}
+</style></head><body><main>
+<div class="hero"><span class="chip">Matematika Kelas X</span><span class="chip">Bab 2 · Model Matematika</span><span class="chip">Model PBL</span>
+<h1>Model Matematika Program Linear</h1><p>Menyusun model matematika program linear: variabel keputusan, kendala, dan fungsi tujuan. Dikerjakan melalui lima fase pembelajaran berbasis masalah (PBL).</p></div>
+<noscript><p class="fb bad">Halaman ini membutuhkan JavaScript.</p></noscript>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="card"><span class="hint" id="pgt"></span><progress id="pg" max="5" value="1" aria-label="Progres"></progress></div>
+<section id="s0"></section><section id="s1"></section><section id="s2"></section><section id="s3"></section><section id="s4"></section>
+</main>
+<script>
+var $=function(i){return document.getElementById(i)},R={},vis={0:1},cur=0,COL=['#c62828','#2e7d32','#8e44ad','#e67e22'];
+var C=function(a,b,op,c){return{a:a,b:b,op:op,c:c}};
+function t(c){var s='';if(c.a)s+=(c.a==1?'':c.a==-1?'−':c.a)+'x';if(c.b){s+=(s?(c.b<0?' − ':' + '):(c.b<0?'−':''))+(Math.abs(c.b)==1?'':Math.abs(c.b))+'y'}return s+' '+c.op+' '+c.c}
+function sat(c,x,y){var v=c.a*x+c.b*y;return c.op=='≤'?v<=c.c:c.op=='≥'?v>=c.c:c.op=='<'?v<c.c:v>c.c}
+function leg(cs){return cs.map(function(c,i){return '<span style="color:'+COL[i]+'">■ '+t(c)+'</span>'}).join(' · ')}
+function clip(p,c){var s=(c.op=='≤'||c.op=='<')?1:-1,f=function(P){return s*(c.a*P[0]+c.b*P[1]-c.c)},o=[];
+for(var i=0;i<p.length;i++){var A=p[i],B=p[(i+1)%p.length],fa=f(A),fb=f(B);if(fa<=1e-9)o.push(A);if((fa<=1e-9)!=(fb<=1e-9)){var k=fa/(fa-fb);o.push([A[0]+k*(B[0]-A[0]),A[1]+k*(B[1]-A[1])])}}return o}
+function plot(id,cs,o){var xm=o.xm,ym=o.ym,W=360,H=330,m=32,sx=(W-m-12)/xm,sy=(H-m-12)/ym,X=function(x){return m+x*sx},Y=function(y){return H-m-y*sy},st=xm>9?2:1,s='',i,x,y;
+s+='<defs><clipPath id="cp'+id+'"><rect x="'+m+'" y="12" width="'+(W-m-12)+'" height="'+(H-m-12)+'"/></clipPath></defs>';
+for(x=0;x<=xm;x+=st)s+='<line x1="'+X(x)+'" y1="'+Y(0)+'" x2="'+X(x)+'" y2="'+Y(ym)+'" stroke="var(--bd)"/><text x="'+X(x)+'" y="'+(H-16)+'" font-size="10" text-anchor="middle">'+x+'</text>';
+for(y=0;y<=ym;y+=st)s+='<line x1="'+X(0)+'" y1="'+Y(y)+'" x2="'+X(xm)+'" y2="'+Y(y)+'" stroke="var(--bd)"/><text x="'+(m-5)+'" y="'+(Y(y)+3)+'" font-size="10" text-anchor="end">'+y+'</text>';
+s+='<line x1="'+X(0)+'" y1="'+Y(0)+'" x2="'+X(xm)+'" y2="'+Y(0)+'" stroke="var(--tx)" stroke-width="1.5"/><line x1="'+X(0)+'" y1="'+Y(0)+'" x2="'+X(0)+'" y2="'+Y(ym)+'" stroke="var(--tx)" stroke-width="1.5"/>';
+(o.regs||[]).forEach(function(r){var p=[[0,0],[xm,0],[xm,ym],[0,ym]];r.forEach(function(j){p=clip(p,cs[j])});if(p.length>2)s+='<polygon points="'+p.map(function(q){return X(q[0])+','+Y(q[1])}).join(' ')+'" fill="var(--acc)" opacity="'+(o.regs.length>1?.25:.4)+'"/>'});
+(o.lines||cs.map(function(c,j){return j})).forEach(function(j){var c=cs[j],a,b,d,e;if(c.b){a=-60;b=(c.c-c.a*a)/c.b;d=60;e=(c.c-c.a*d)/c.b}else{a=d=c.c/c.a;b=-60;e=60}
+s+='<line clip-path="url(#cp'+id+')" x1="'+X(a)+'" y1="'+Y(b)+'" x2="'+X(d)+'" y2="'+Y(e)+'" stroke="'+COL[j]+'" stroke-width="2.2"'+((c.op=='<'||c.op=='>')?' stroke-dasharray="6 4"':'')+'/>'});
+(o.pts||[]).forEach(function(p){var f=p.s=='sel'?'var(--acc)':p.s=='off'?'none':(p.ok?'#2e7d32':'#c62828');s+='<circle cx="'+X(p.x)+'" cy="'+Y(p.y)+'" r="'+(p.s?5:6)+'" fill="'+f+'" stroke="'+(p.s=='off'?'var(--mut)':'#fff')+'" stroke-width="1.2"/>'});
+var v=$(id);v.setAttribute('viewBox','0 0 '+W+' '+H);v.innerHTML=s;
+v.onclick=o.click?function(e){var r=v.getBoundingClientRect(),px=(e.clientX-r.left)*W/r.width,py=(e.clientY-r.top)*H/r.height;o.click((px-m)/sx,(H-m-py)/sy)}:null}
+var B=function(id,a,r,l){return '<input type="text" class="blank" id="'+id+'" data-ans="'+a+'" data-rep="'+r+'" inputmode="decimal" aria-label="'+(l||id)+'">'};
+var ESC={'<':'&lt;','>':'&gt;'};
+function SG$(id,a,r){return '<select id="'+id+'" data-ans="'+(ESC[a]||a)+'" data-rep="'+r+'" aria-label="tanda"><option value="">?</option><option value="&lt;">&lt;</option><option value="≤">≤</option><option value="&gt;">&gt;</option><option value="≥">≥</option></select>'}
+function YT(id,a,r,o1,o2){return '<select id="'+id+'" data-ans="'+a+'" data-rep="'+r+'"><option value="">?</option><option value="'+o1[0]+'">'+o1[1]+'</option><option value="'+o2[0]+'">'+o2[1]+'</option></select>'}
+var YA=function(id,a,r){return YT(id,a,r,['ya','Ya'],['tidak','Tidak'])};
+function msg(id,ok,tx){var e=$(id);e.className='fb '+(ok?'ok':'bad');e.textContent=tx}
+function chk(ids,fb){var n=0;ids.forEach(function(i){var e=$(i),v=(e.value||'').trim().toLowerCase().replace(',','.'),ok=v===String(e.dataset.ans).toLowerCase();e.classList.remove('ok','bad');e.classList.add(ok?'ok':'bad');R[i]=ok?1:0;n+=ok});
+msg(fb,n==ids.length,n+' dari '+ids.length+' benar'+(n==ids.length?'. Hebat!':'. Perbaiki isian yang merah lalu periksa lagi.'))}
+function TA(r,ph,h){return '<textarea data-r="'+r+'" aria-label="'+r+'" placeholder="'+(ph||'Tulis jawabanmu (dikoreksi guru)')+'" style="min-height:'+(h||70)+'px"></textarea>'}
+var tabs=['Mulai','Fase 1','Fase 2','Fase 3','Fase 4'];
+tabs.forEach(function(n,i){var b=document.createElement('button');b.textContent=n;b.setAttribute('role','tab');b.onclick=function(){go(i)};$('tabs').appendChild(b)});
+function go(n){cur=n;vis[n]=1;for(var i=0;i<5;i++){$('s'+i).classList.toggle('on',i==n);$('tabs').children[i].setAttribute('aria-selected',i==n)}
+var c=Object.keys(vis).length;$('pg').value=c;$('pgt').textContent='Progres: '+c+' dari 5 bagian dibuka';window.scrollTo(0,0)}
+var sx=function(i,h){$(i).innerHTML=h};
+var PK=[C(2,1,'≤',10),C(1,2,'≤',8),C(1,0,'≥',0),C(0,1,'≥',0)],SM=[C(2,1,'≥',4),C(1,1,'≥',3),C(1,0,'≥',0),C(0,1,'≥',0)],
+SL=[C(1,1,'≤',12),C(1,2,'≤',16),C(1,0,'≥',0),C(0,1,'≥',0),C(2,5,'=',10)],SEL=[C(1,1,'≤',6),C(1,0,'≤',4),C(1,0,'≥',0),C(0,1,'≥',0),C(4,3,'=',12)];COL.push('#e67e22');
+function U(id,a){return '<select id="'+id+'" data-ans="'+a+'" data-rep="S"><option value="">?</option><option value="var">variabel keputusan</option><option value="fungsi">fungsi tujuan</option><option value="kendala">kendala</option></select>'}
+sx('s0',`<h2>🎯 Identitas dan Petunjuk</h2>
+<p class="open">Setiap usaha punya batas: bahan, waktu, uang, tempat. Agar keputusan produksi bisa dihitung, masalah cerita harus diubah menjadi <b>model matematika</b>. Hari ini kamu belajar menyusunnya dengan rapi dan benar.</p>
+<div class="card"><div class="g"><input type="text" id="nk" placeholder="Nama" aria-label="Nama"><input type="text" id="kl" placeholder="Kelas / kelompok" aria-label="Kelas"><input type="text" id="ab" placeholder="No. absen" aria-label="Absen"></div></div>
+<h3>Tujuan pembelajaran</h3><div class="card"><ul><li>Menyebutkan tiga unsur program linear: variabel keputusan, kendala, dan fungsi tujuan.</li><li>Menyajikan data soal cerita dalam tabel.</li><li>Menyusun kendala sebagai sistem pertidaksamaan linear, lengkap dengan kendala nonnegatif.</li><li>Menyusun fungsi tujuan dari keuntungan atau biaya per unit.</li></ul></div>
+<h3>Peta kegiatan PBL</h3><div class="card"><table><tr><th>Fase</th><th>Kegiatan</th></tr><tr><td>1 Orientasi masalah</td><td>Masalah Pak Dedi dan simulasi produksi</td></tr><tr><td>2 Mengorganisasikan</td><td>Menerjemahkan kata ke tanda, tiga unsur, tabel data</td></tr><tr><td>3 Penyelidikan</td><td>Tiga latihan menyusun model: pemisalan, tabel, kendala, fungsi tujuan</td></tr><tr><td>4 Evaluasi</td><td>Dua soal pemodelan</td></tr></table></div>
+<h3>Cara mengerjakan</h3><div class="card"><p>Isian dan pilihan diperiksa otomatis lewat tombol <i>Periksa</i>. Jawaban tertulis dikoreksi guru. Kerjakan berurutan dari Fase 1 sampai Fase 5. Kamu tidak perlu mencari nilai optimum, cukup menyusun modelnya.</p></div>`);
+sx('s1',`<h2>Fase 1 · Orientasi pada Masalah</h2>
+<p class="open">Baca masalah berikut dengan saksama, lalu catat apa yang kamu temukan.</p>
+<div class="card"><p><b>Masalah Pak Dedi.</b> Pak Dedi membuat dua paket oleh-oleh. Paket A membutuhkan 2 kg bahan dan 1 jam kerja. Paket B membutuhkan 1 kg bahan dan 2 jam kerja. Persediaan bahan 10 kg dan waktu kerja 8 jam. Keuntungan paket A Rp20.000,00 dan paket B Rp30.000,00. <i>Tuliskan semua batasan dan tujuan Pak Dedi dalam bentuk matematika.</i></p></div>
+<h3>Catatan bacaanku</h3><div class="card">
+<p><b>1.</b> Sebutkan dua batas (kendala) yang dimiliki Pak Dedi.</p>${TA('Catatan 1 (dua kendala)','',50)}
+<p><b>2.</b> Apa yang dicari Pak Dedi? Tentukan variabelnya.</p>${TA('Catatan 2 (variabel)','',50)}
+<p><b>3.</b> Apa yang ingin dibuat sebesar-besarnya?</p>${TA('Catatan 3 (tujuan)','',50)}
+<p><b>4.</b> Mengapa paket A dan B tidak boleh bernilai negatif?</p>${TA('Catatan 4 (nonnegatif)','',50)}</div>
+<h3>Menurutmu</h3><div class="card"><p>Mengapa batas bahan ditulis dengan tanda "paling banyak" (≤), bukan "tepat sama dengan" (=)?</p>${TA('Menurutku (mengapa ≤)')}</div>
+<h3>Rumusan masalah</h3><div class="card"><p><b>Masalah 1.</b> Susun model matematika masalah Pak Dedi.</p><p><b>Masalah 2.</b> Susun model matematika untuk soal produksi roti, barang, dan kue pada Fase 3, lalu dua soal pada evaluasi.</p></div>`);
+sx('s2',`<h2>Fase 2 · Mengorganisasikan Belajar</h2>
+<h3>Apersepsi: dari kata ke tanda</h3>
+<div class="card"><p>Pilih tanda yang sesuai.</p>
+<p>"Tidak lebih dari 20" → x ${SG$('a1','≤','V')} 20 · "Paling sedikit 6" → x ${SG$('a2','≥','V')} 6 · "Kurang dari 10" → x ${SG$('a3','<','V')} 10 · "Minimal 5" → x ${SG$('a4','≥','V')} 5 · "Maksimum 50" → x ${SG$('a5','≤','V')} 50</p>
+<button class="btn" onclick="chk(['a1','a2','a3','a4','a5'],'apf')">Periksa</button><p class="fb" id="apf"></p></div>
+<h3>Tiga unsur program linear</h3>
+<div class="card"><p>Program linear adalah metode untuk menentukan nilai maksimum atau minimum <b>fungsi tujuan</b> dengan memperhatikan <b>kendala</b> berbentuk pertidaksamaan linear. Kelompokkan bagian model Pak Dedi berikut.</p>
+<table><tr><th>Bagian model</th><th>Termasuk</th></tr><tr><td>x = banyak paket A, y = banyak paket B</td><td>${U('u1','var')}</td></tr><tr><td>Z = 20.000x + 30.000y</td><td>${U('u2','fungsi')}</td></tr><tr><td>2x + y ≤ 10 (batas bahan)</td><td>${U('u3','kendala')}</td></tr><tr><td>x ≥ 0 dan y ≥ 0</td><td>${U('u4','kendala')}</td></tr></table>
+<button class="btn" onclick="chk(['u1','u2','u3','u4'],'uf')">Periksa</button><p class="fb" id="uf"></p>
+<div class="key"><b>Langkah menyusun model:</b> (1) misalkan yang dicari sebagai x dan y, (2) susun tabel kebutuhan dan persediaan, (3) tulis tiap batasan sebagai pertidaksamaan, (4) tulis fungsi tujuan dari untung atau biaya per unit.</div></div>
+<h3>Pemisalan variabel</h3><div class="card">${TA('Pemisalan variabel','Misalkan x = ... dan y = ...',50)}</div>
+<h3>Tabel data masalah Pak Dedi</h3>
+<div class="card"><table><tr><th></th><th>Bahan (kg)</th><th>Waktu (jam)</th><th>Untung (Rp)</th></tr><tr><td>Paket A (x)</td><td>${B('t1',2,'S')}</td><td>${B('t2',1,'S')}</td><td>${B('t3',20000,'S')}</td></tr><tr><td>Paket B (y)</td><td>${B('t4',1,'S')}</td><td>${B('t5',2,'S')}</td><td>${B('t6',30000,'S')}</td></tr><tr><td>Persediaan</td><td>${B('t7',10,'S')}</td><td>${B('t8',8,'S')}</td><td>–</td></tr></table>
+<button class="btn" onclick="chk(['t1','t2','t3','t4','t5','t6','t7','t8'],'tf')">Periksa</button><p class="fb" id="tf"></p>
+<div class="key"><b>Kunci membaca tabel:</b> setiap <b>baris persediaan</b> menjadi satu kendala. Kalikan kebutuhan tiap produk dengan x atau y, jumlahkan, lalu bandingkan dengan persediaan.</div></div>
+<h3>Rencana kelompok</h3><div class="card"><p class="hint">Contoh peran: pencatat tabel, penyusun kendala, penyusun fungsi tujuan, pemeriksa satuan.</p>${TA('Rencana penyelesaian','Langkah apa yang akan kamu dan kelompokmu lakukan?')}</div>`);
+sx('s3',`<h2>Fase 3 · Menyelidiki: Menyusun Model ★</h2>
+<h3>Contoh · Pak Dedi: model lengkap (terbimbing)</h3>
+<div class="card"><p>Dari tabel di Fase 2:</p>
+<p>Bahan: ${B('b1',2,'V')}x + ${B('b2',1,'V')}y ${SG$('b3','≤','V')} ${B('b4',10,'V')} · Waktu: ${B('b5',1,'V')}x + ${B('b6',2,'V')}y ${SG$('b7','≤','V')} ${B('b8',8,'V')}</p>
+<p>Nonnegatif: x ${SG$('b9','≥','S')} 0 dan y ${SG$('b10','≥','S')} 0 · Fungsi tujuan: Z = ${B('b11',20000,'S')}x + ${B('b12',30000,'S')}y</p>
+<button class="btn" onclick="chk(['b1','b2','b3','b4','b5','b6','b7','b8','b9','b10','b11','b12'],'bf')">Periksa</button><p class="fb" id="bf"></p></div>
+<h3>Soal 1. Produksi Roti</h3>
+<div class="card"><p>Sebuah toko roti memproduksi dua jenis roti, yaitu roti I dan roti II. Untuk membuat satu roti I diperlukan 100 gram tepung dan 75 gram mentega, sedangkan satu roti II diperlukan 50 gram tepung dan 75 gram mentega. Setiap hari, toko tersebut memiliki persediaan tepung sebanyak 25 kg dan mentega sebanyak 30 kg. Laba yang diperoleh dari penjualan satu roti I adalah Rp3.000,00 dan satu roti II adalah Rp2.000,00.</p><p><b>Susunlah model matematika dari permasalahan tersebut!</b></p>
+<p><b>Langkah 1. Pemisalan</b></p>${TA('Roti: pemisalan variabel','Misalkan x = ... dan y = ...',50)}
+<p><b>Langkah 2. Tabel data</b> <span class="hint">(samakan satuan: 1 kg = 1.000 g)</span></p>
+<table><tr><th></th><th>Tepung (g)</th><th>Mentega (g)</th><th>Laba (Rp)</th></tr><tr><td>Roti I</td><td>${B('rt1',100,'S')}</td><td>${B('rt2',75,'S')}</td><td>${B('rt3',3000,'S')}</td></tr><tr><td>Roti II</td><td>${B('rt4',50,'S')}</td><td>${B('rt5',75,'S')}</td><td>${B('rt6',2000,'S')}</td></tr><tr><td>Persediaan</td><td>${B('rt7',25000,'S')}</td><td>${B('rt8',30000,'S')}</td><td>–</td></tr></table>
+<button class="btn" onclick="chk(['rt1','rt2','rt3','rt4','rt5','rt6','rt7','rt8'],'rtf')">Periksa tabel</button><p class="fb" id="rtf"></p>
+<p><b>Langkah 3. Model</b></p>
+<p>Tepung: ${B('r1',100,'V')}x + ${B('r2',50,'V')}y ${SG$('r3','≤','V')} ${B('r4',25000,'S')} · Mentega: ${B('r5',75,'V')}x + ${B('r6',75,'V')}y ${SG$('r7','≤','V')} ${B('r8',30000,'S')}</p>
+<p>Fungsi tujuan: Z = ${B('r9',3000,'S')}x + ${B('r10',2000,'S')}y</p>
+<button class="btn" onclick="chk(['r1','r2','r3','r4','r5','r6','r7','r8','r9','r10'],'rf')">Periksa model</button><p class="fb" id="rf"></p></div>
+<h3>Soal 2. Produksi Barang</h3>
+<div class="card"><p>Sebuah perusahaan memproduksi dua jenis barang, yaitu barang A dan barang B. Proses produksi kedua barang tersebut menggunakan dua mesin, yaitu mesin I dan mesin II. Untuk memproduksi satu barang A diperlukan waktu 8 jam pada mesin I dan 6 jam pada mesin II. Sementara itu, satu barang B memerlukan waktu 4 jam pada mesin I dan 10 jam pada mesin II. Setiap mesin hanya dapat beroperasi paling lama 20 jam dalam satu hari.</p><p><b>Susunlah model matematika dari permasalahan tersebut!</b></p>
+<p><b>Langkah 1. Pemisalan</b></p>${TA('Mesin: pemisalan variabel','Misalkan x = ... dan y = ...',50)}
+<p><b>Langkah 2. Tabel data</b></p>
+<table><tr><th></th><th>Mesin I (jam)</th><th>Mesin II (jam)</th></tr><tr><td>Barang A</td><td>${B('mc1',8,'S')}</td><td>${B('mc2',6,'S')}</td></tr><tr><td>Barang B</td><td>${B('mc3',4,'S')}</td><td>${B('mc4',10,'S')}</td></tr><tr><td>Batas kerja</td><td>${B('mc5',20,'S')}</td><td>${B('mc6',20,'S')}</td></tr></table>
+<button class="btn" onclick="chk(['mc1','mc2','mc3','mc4','mc5','mc6'],'mcf')">Periksa tabel</button><p class="fb" id="mcf"></p>
+<p><b>Langkah 3. Model</b></p>
+<p>Mesin I: ${B('ms1',8,'V')}x + ${B('ms2',4,'V')}y ≤ ${B('ms3',20,'V')} → sederhana: ${B('ms4',2,'S')}x + y ≤ ${B('ms5',5,'S')}</p>
+<p>Mesin II: ${B('ms6',6,'V')}x + ${B('ms7',10,'V')}y ≤ 20 → sederhana: ${B('ms8',3,'S')}x + ${B('ms9',5,'S')}y ≤ ${B('ms10',10,'S')}</p>
+<button class="btn" onclick="chk(['ms1','ms2','ms3','ms4','ms5','ms6','ms7','ms8','ms9','ms10'],'msf')">Periksa model</button><p class="fb" id="msf"></p></div>
+<h3>Soal 3. Produksi Kue</h3>
+<div class="card"><p>Seorang pengusaha kue memproduksi dua jenis kue, yaitu kue A dan kue B. Untuk membuat satu kue A diperlukan 50 gram gula, 150 gram tepung, dan 50 gram mentega. Sementara itu, satu kue B memerlukan 100 gram gula, 100 gram tepung, dan 50 gram mentega. Persediaan bahan baku yang tersedia setiap hari adalah 4 kg gula, 6 kg tepung, dan 3 kg mentega.</p><p><b>Susunlah model matematika dari permasalahan tersebut!</b></p>
+<p><b>Langkah 1. Pemisalan</b></p>${TA('Kue: pemisalan variabel','Misalkan x = ... dan y = ...',50)}
+<p><b>Langkah 2. Tabel data</b> <span class="hint">(ubah kg ke gram)</span></p>
+<table><tr><th></th><th>Gula (g)</th><th>Tepung (g)</th><th>Mentega (g)</th></tr><tr><td>Kue A</td><td>${B('kt1',50,'S')}</td><td>${B('kt2',150,'S')}</td><td>${B('kt3',50,'S')}</td></tr><tr><td>Kue B</td><td>${B('kt4',100,'S')}</td><td>${B('kt5',100,'S')}</td><td>${B('kt6',50,'S')}</td></tr><tr><td>Persediaan</td><td>${B('kt7',4000,'S')}</td><td>${B('kt8',6000,'S')}</td><td>${B('kt9',3000,'S')}</td></tr></table>
+<button class="btn" onclick="chk(['kt1','kt2','kt3','kt4','kt5','kt6','kt7','kt8','kt9'],'ktf')">Periksa tabel</button><p class="fb" id="ktf"></p>
+<p><b>Langkah 3. Model</b></p>
+<p>Gula: ${B('ku1',50,'V')}x + ${B('ku2',100,'V')}y ≤ ${B('ku3',4000,'V')} → x + ${B('ku4',2,'S')}y ≤ ${B('ku5',80,'S')}</p>
+<p>Tepung: ${B('ku6',150,'V')}x + ${B('ku7',100,'V')}y ≤ ${B('ku8',6000,'V')} → ${B('ku9',3,'S')}x + ${B('ku10',2,'S')}y ≤ ${B('ku11',120,'S')}</p>
+<p>Mentega: ${B('ku12',50,'V')}x + ${B('ku13',50,'V')}y ≤ ${B('ku14',3000,'V')} → x + y ≤ ${B('ku15',60,'S')}</p>
+<button class="btn" onclick="chk(['ku1','ku2','ku3','ku4','ku5','ku6','ku7','ku8','ku9','ku10','ku11','ku12','ku13','ku14','ku15'],'kuf')">Periksa model</button><p class="fb" id="kuf"></p>
+<p>Berapa kendala utama dan berapa kendala nonnegatif pada model ini? Jelaskan.</p>${TA('Banyak kendala')}</div>
+<h3>Ayo simpulkan</h3><div class="card">${TA('Kesimpulan langkah menyusun model','Langkah menyusun model matematika program linear adalah ...',80)}</div>`);
+sx('s4',`<h2>Fase 4 · Evaluasi</h2>
+<div class="card"><p>Untuk tiap soal, tuliskan pemisalan, tabel data, kendala, dan fungsi tujuan. Kamu tidak perlu mencari nilai optimumnya. Jawaban dikoreksi guru.</p></div>
+<h3>Soal 1. Kedai Minuman</h3>
+<div class="card"><p>Sebuah kedai minuman menjual dua jenis minuman, yaitu jus jeruk dan jus alpukat. Untuk membuat satu gelas jus jeruk diperlukan 2 buah jeruk dan 100 ml susu. Sementara itu, satu gelas jus alpukat memerlukan 1 buah alpukat dan 150 ml susu. Dalam satu hari, kedai tersebut memiliki persediaan 40 buah jeruk, 25 buah alpukat, dan 3.000 ml susu. Laba dari penjualan satu gelas jus jeruk adalah Rp5.000,00 dan satu gelas jus alpukat Rp7.000,00.</p><p><b>Susunlah model matematika dari permasalahan tersebut!</b> Tuliskan juga fungsi tujuannya.</p>
+${TA('Evaluasi Soal 1: pemisalan dan tabel data','Pemisalan variabel dan tabel data',100)}
+${TA('Evaluasi Soal 1: kendala','Kendala (termasuk nonnegatif)',90)}
+${TA('Evaluasi Soal 1: fungsi tujuan','Fungsi tujuan',50)}</div>
+<h3>Soal 2. Usaha Konveksi</h3>
+<div class="card"><p>Sebuah usaha konveksi memproduksi dua jenis pakaian, yaitu kemeja dan celana. Untuk membuat satu kemeja diperlukan 2 meter kain dan 1 jam waktu pengerjaan. Sementara itu, satu celana memerlukan 1,5 meter kain dan 2 jam waktu pengerjaan. Setiap hari, usaha konveksi tersebut memiliki persediaan kain sebanyak 60 meter dan waktu kerja paling lama 48 jam. Laba dari satu kemeja adalah Rp40.000,00 dan satu celana Rp50.000,00.</p><p><b>Susunlah model matematika dari permasalahan tersebut!</b> Tuliskan juga fungsi tujuannya.</p>
+${TA('Evaluasi Soal 2: pemisalan dan tabel data','Pemisalan variabel dan tabel data',100)}
+${TA('Evaluasi Soal 2: kendala','Kendala (termasuk nonnegatif)',90)}
+${TA('Evaluasi Soal 2: fungsi tujuan','Fungsi tujuan',50)}</div>`);
+['rt3','rt6','rt7','rt8','kt7','kt8','kt9','t3','t6','b11','b12','r4','r8','r9','r10','ku3','ku8','ku14'].forEach(function(i){$(i).style.width='92px'});
+go(0);
+</script></body></html>
